@@ -30,4 +30,5 @@ async function getUser (userName) {
   }
   return user
 }
+getUser('najmushsaaquib').then(msg => console.log(msg))
 module.exports = { getUser }
