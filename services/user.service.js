@@ -10,7 +10,7 @@ async function getUser (userName) {
       email, twitter_username, public_repos, followers, following, created_at
     } = await Github.fetchUser(userName)
 
-    const createdUser = await userRepo.createUser({
+    return userRepo.createUser({
       userName: login,
       location,
       email,
@@ -25,10 +25,16 @@ async function getUser (userName) {
       following,
       githubJoinedAt: created_at
     })
-
-    return createdUser
   }
   return user
 }
-getUser('najmushsaaquib').then(msg => console.log(msg))
-module.exports = { getUser }
+
+async function getUsers () {
+  return userRepo.listUsers()
+}
+
+async function getUsersByLocation (location) {
+  return userRepo.getUsersByLocation(location)
+}
+
+module.exports = { getUser, getUsers, getUsersByLocation }
