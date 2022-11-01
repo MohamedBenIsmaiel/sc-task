@@ -7,8 +7,8 @@ function users (db) {
       })
     },
 
-    async  createUser ({ userName, location, email, photo }) {
-      return db.User.create({ userName, location, email, photo })
+    async  createUser (user) {
+      return db.User.create(user)
     }
 
   }
