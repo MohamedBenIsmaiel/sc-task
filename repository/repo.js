@@ -21,11 +21,63 @@ function users (db) {
           location
         }
       })
+    },
+
+    async getUserRepos (userName) {
+      return db.User.findAll({
+        where: {
+          userName
+        },
+        include: {
+          model: db.Repo
+        }
+      })
+    },
+
+    async getUserByProgrammingLang (language) {
+      return db.User.findAll({
+        include: {
+          model: db.Repo,
+          where: { language }
+        }
+      })
+    }
+
+  }
+}
+
+function repos (db) {
+  return {
+    async getRepo (userName, repoName) {
+      return db.User.findOne({
+        where: { userName },
+        include: {
+          model: db.Repo,
+          where: {
+            repoName
+          }
+        }
+      })
+    },
+
+    async  createRepo (repo) {
+      return db.Repo.create(repo)
+    },
+
+    async listRepos () {
+      return db.Repo.findAll()
+    },
+
+    async getReposByLanguage (language) {
+      return db.Repo.findAll({
+        where: { language }
+      })
     }
 
   }
 }
 
 module.exports = {
-  users
+  users,
+  repos
 }
