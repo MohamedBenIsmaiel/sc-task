@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     url: {
       type: DataTypes.STRING
     },
-    pushed_at: {
+    pushedAt: {
       type: DataTypes.STRING
     },
     watchersCount: {
