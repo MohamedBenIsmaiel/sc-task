@@ -1,5 +1,4 @@
 const { Model } = require('sequelize')
-const repo = require('./repo.model')
 
 module.exports = (sequelize, DataTypes) => {
   class Commit extends Model {
@@ -19,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    repoId: {
+    RepoId: {
       type: DataTypes.INTEGER,
       references: {
-        model: repo,
+        model: 'Repos',
         key: 'id'
       }
     },

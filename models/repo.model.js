@@ -1,5 +1,4 @@
 const { Model } = require('sequelize')
-const user = require('./user.model')
 
 module.exports = (sequelize, DataTypes) => {
   class Repo extends Model {
@@ -22,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    userId: {
+    UserId: {
       type: DataTypes.INTEGER,
       references: {
-        model: user,
+        model: 'Users',
         key: 'id'
       }
     },
@@ -33,6 +32,37 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    fork: {
+      type: DataTypes.BOOLEAN
+    },
+    url: {
+      type: DataTypes.STRING
+    },
+    pushedAt: {
+      type: DataTypes.STRING
+    },
+    watchersCount: {
+      type: DataTypes.INTEGER
+    },
+    language: {
+      type: DataTypes.STRING
+    },
+    hasDownloads: {
+      type: DataTypes.BOOLEAN
+    },
+    archived: {
+      type: DataTypes.BOOLEAN
+    },
+    license: {
+      type: DataTypes.STRING
+    },
+    defaultBranch: {
+      type: DataTypes.STRING
     }
   }, {
     sequelize,
