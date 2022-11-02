@@ -5,5 +5,5 @@ module.exports = {
     },
     OAUth: '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'
   },
-  githubApiUrl: 'https://api.github.com/users'
+  githubApiUrl: 'https://api.github.com'
 }
