@@ -18,7 +18,7 @@ function users (db) {
     async getUsersByLocation (location) {
       return db.User.findAll({
         where: {
-          location
+          location: { [db.Sequelize.Op.iLike]: `%${location}%` }
         }
       })
     },
@@ -34,11 +34,13 @@ function users (db) {
       })
     },
 
-    async getUserByProgrammingLang (language) {
+    async getUsersByProgrammingLang (language) {
       return db.User.findAll({
         include: {
           model: db.Repo,
-          where: { language }
+          where: {
+            language: { [db.Sequelize.Op.iLike]: `%${language}%` }
+          }
         }
       })
     }
@@ -48,15 +50,9 @@ function users (db) {
 
 function repos (db) {
   return {
-    async getRepo (userName, repoName) {
-      return db.User.findOne({
-        where: { userName },
-        include: {
-          model: db.Repo,
-          where: {
-            repoName
-          }
-        }
+    async getRepo (repoName) {
+      return db.Repo.findOne({
+        where: { repoName }
       })
     },
 
@@ -70,7 +66,9 @@ function repos (db) {
 
     async getReposByLanguage (language) {
       return db.Repo.findAll({
-        where: { language }
+        where: {
+          language: { [db.Sequelize.Op.iLike]: `%${language}%` }
+        }
       })
     }
 
