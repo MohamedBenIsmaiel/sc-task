@@ -60,7 +60,7 @@ function repos (db) {
       return db.Repo.create(repo)
     },
 
-    async listRepos () {
+    async getRepos () {
       return db.Repo.findAll()
     },
 
