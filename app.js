@@ -11,13 +11,13 @@ const argv = yargs.options({
 }).argv
 
 if (argv.f) {
-  getUser(argv.f).then(user => console.log(user.dataValues)).catch(e => console.error(e))
-} else if (argv.loc) {
-  console.log('--loc --location command should follow --li --list command, --help command will help you more ;)')
+  getUser(argv.f).then(user => console.log(user.dataValues)).catch(e => console.error(e.message))
 } else if (argv.li && argv.loc) {
   getUsersByLocation(argv.loc).then(users => users.map(user => console.log(user.dataValues))).catch(e => console.error(e))
 } else if (argv.li) {
   getUsers().then(users => users.map(user => console.log(user.dataValues))).catch(e => console.log(e))
+} else if (argv.loc) {
+  console.log('--loc --location command should follow --li --list command, --help command will help you more ;)')
 } else if (argv.h) {
   console.log(`
     Options:
