@@ -1,11 +1,13 @@
 # sp-task
 
-sp-task is a Node js Cli for dealing with GIthub Api.
+sp-task is a Node js Cli for dealing with GIthub Api to fetch info about users , repos and commits
 
 ## dependencies
 #### [*] Nodejs >= v10
 #### [*] docker && docker-compose
 
+### ENV
+#### don't forget to put .env variables to make the app up you need to put database credentials and github token
 ## Installation
 ### step 1:
 if you are use linux distros like fedora or debian , give `setup.sh` a permission and run it then open the terminal and write the program name `second-profit`
