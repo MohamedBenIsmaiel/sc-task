@@ -82,28 +82,35 @@ function runCMD (argv) {
         Ex: --ul javscript
    `)
   } else {
-    console.log(`
-    Options:
-       --help       show help
-       --f --find   find specific user or repo
-            --r --repo 
-            --u -- user
-        Ex: --f --u username 
-        Ex: --f --u username --r repo name
-
-       --li --list  list all users , users based on location or repos
-            --loc --location 
-            --r  --repos
-        Ex: --li 
-        Ex: --li --loc Egypt
-        Ex: --li --repos
-
-        --rlang  --repos-language   list all repos based on programming language
-        Ex: --rlang javascript 
-
-        --uloc  --user-location     list all users based on their location
-        Ex: --uloc egypt
-`)
+    console.log(
+      `
+      Options:
+         --help       show help
+         --f --find   find specific user or repo
+              --r --repo 
+              --u -- user
+          Ex: --f --u username 
+          Ex: --f --u username --r repo name
+  
+         --li --list  list all users , users based on location or repos
+              --loc --location 
+              --r  --repos
+          Ex: --li 
+          Ex: --li --loc Egypt
+          Ex: --li --repos
+  
+          --rlang  --repos-language   list all repos based on programming language
+          Ex: --rlang javascript 
+  
+          --uloc  --user-location     list all users based on their location
+          Ex: --uloc egypt
+  
+          --ur   --user-repos         list all repos for specific user
+          Ex: --ur username
+  
+          --ul   --user-language      list all users based on programming language
+          Ex: --ul javscript
+     `)
   }
 }
 
