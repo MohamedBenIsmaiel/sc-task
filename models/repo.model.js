@@ -1,8 +1,8 @@
 const { Model } = require('sequelize')
-const repo = require('./repo')
+const user = require('./user.model')
 
 module.exports = (sequelize, DataTypes) => {
-  class Commit extends Model {
+  class Repo extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -10,36 +10,34 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
-      Commit.belongsTo(models.Repo)
+      Repo.belongsTo(models.User)
+      Repo.hasMany(models.Commit, {
+        foreignKey: 'repoId'
+      })
     }
   }
-  Commit.init({
+  Repo.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    repoId: {
+    userId: {
       type: DataTypes.INTEGER,
       references: {
-        model: repo,
+        model: user,
         key: 'id'
       }
     },
-    commit: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    commitId: {
+    repoName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
     }
   }, {
     sequelize,
-    modelName: 'Commit',
+    modelName: 'Repo',
     timestamps: true
   })
-  return Commit
+  return Repo
 }

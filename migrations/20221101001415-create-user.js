@@ -22,6 +22,46 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
+      avatar: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      type: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      company: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      blog: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      bio: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      twitterUserName: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      publicRepos: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      followers: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      following: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      githubJoinedAt: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
