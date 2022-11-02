@@ -1,5 +1,8 @@
-
 const yargs = require('yargs')
+const clc = require('cli-color')
+
+const error = clc.red.bold
+const warn = clc.yellow
 
 const { getUser, getUsersByLocation, getUsers } = require('../services/user.service')
 const { getRepo, getRepos, getReposByLanguage } = require('../services/repos.service')
@@ -20,25 +23,26 @@ function getArgsOption () {
 
 function runCMD (argv) {
   if (argv.f && argv.u && argv.r) {
-    getRepo(argv.u, argv.r).then(repo => console.log(repo.dataValues)).catch(e => console.log('Not found !'))
+    getRepo(argv.u, argv.r).then(repo => console.log(repo.dataValues)).catch(e => console.log(error('Not found !')))
   } else if (argv.f && argv.u) {
-    getUser(argv.u).then(user => console.log(user.dataValues)).catch(e => console.error('Not found !'))
+    getUser(argv.u).then(user => console.log(user.dataValues)).catch(e => console.error(error('Not found !')))
   } else if (argv.f) {
-    console.log('You can not use --f --find without other option like --r or --u, plz see --help command')
+    console.log(warn('You can not use --f --find without other option like --r or --u, plz see --help command'))
   } else if (argv.li && argv.loc) {
-    getUsersByLocation(argv.loc).then(users => users.map(user => console.log(user.dataValues))).catch(e => console.error(e.message))
+    getUsersByLocation(argv.loc).then(users => users.map(user => console.log(user.dataValues))).catch(e => console.error(error(e.message)))
   } else if (argv.li && argv.repos) {
-    getRepos().then(repos => repos.map(repo => console.log(repo.dataValues))).catch(e => console.log(e.message))
+    getRepos().then(repos => repos.map(repo => console.log(repo.dataValues))).catch(e => console.log(error(e.message)))
   } else if (argv.li) {
-    getUsers().then(users => users.map(user => console.log(user.dataValues))).catch(e => console.log(e.message))
+    getUsers().then(users => users.map(user => console.log(user.dataValues))).catch(e => console.log(error(e.message)))
   } else if (argv.loc) {
-    console.log('--loc --location command should follow --li --list command, --help command will help you more ;)')
+    console.log(warn('--loc --location command should follow --li --list command, --help command will help you more ;)'))
   } else if (argv.rlang) {
-    getReposByLanguage(argv.rlang).then(repos => repos.map(repo => console.log(repo.dataValues))).catch(e => console.error(e.message))
+    getReposByLanguage(argv.rlang).then(repos => repos.map(repo => console.log(repo.dataValues))).catch(e => console.error(error(e.message)))
   } else if (argv.uloc) {
-    getUsersByLocation(argv.uloc).then(users => users.map(user => console.log(user.dataValues))).catch(e => console.error(e.meesage))
+    getUsersByLocation(argv.uloc).then(users => users.map(user => console.log(user.dataValues))).catch(e => console.error(error(e.meesage)))
   } else if (argv.h) {
-    console.log(`
+    console.log(
+    `
     Options:
        --help       show help
        --f --find   find specific user or repo
@@ -59,7 +63,7 @@ function runCMD (argv) {
 
         --uloc  --user-location     list all users based on their location
         Ex: --uloc egypt
-`)
+   `)
   } else {
     console.log(`
     Options:
