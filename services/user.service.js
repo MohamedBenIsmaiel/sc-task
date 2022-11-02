@@ -9,7 +9,6 @@ async function getUser (userName) {
       login, avatar_url, type, company, blog, bio, location,
       email, twitter_username, public_repos, followers, following, created_at
     } = await Github.fetchUser(userName)
-
     return userRepo.createUser({
       userName: login,
       location,
