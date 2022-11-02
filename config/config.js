@@ -5,7 +5,8 @@ module.exports = {
     database: 'secondProfit',
     host: '127.0.0.1',
     dialect: 'postgres',
-    port: '5434'
+    port: '5434',
+    logging: false
   },
   test: {
     username: 'root',
