@@ -31,7 +31,7 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
-      pushed_at: {
+      pushedAt: {
         type: Sequelize.STRING
       },
       watchersCount: {
