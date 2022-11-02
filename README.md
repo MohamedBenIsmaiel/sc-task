@@ -5,6 +5,8 @@ sp-task is a Node js Cli for dealing with GIthub Api to fetch info about users ,
 ## dependencies
 #### [*] Nodejs >= v10
 #### [*] docker && docker-compose
+#### [*] sequelize ORM
+for Sql injection Sequelize escapes replacements, which avoids the problem at the heart of SQL injection attacks: unescaped strings. It also supports binding parameters when using SQLite or PostgreSQL, which alleviates the risk further by sending the parameters to the database separately to the query
 
 ### ENV
 #### don't forget to put .env variables to make the app up you need to put database credentials and github token
@@ -39,10 +41,10 @@ then you can lanuch the app
 ```bash
  npm i -g
 ```
-then write `second-profit --help`
+then open the terminal and write `second-profit --help`
 
 ## Usage
-to see all the program commands
+to see all the program command
 ```bash
 second-profit --help
 ```
