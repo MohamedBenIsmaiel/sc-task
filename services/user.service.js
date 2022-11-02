@@ -36,4 +36,16 @@ async function getUsersByLocation (location) {
   return userRepo.getUsersByLocation(location)
 }
 
-module.exports = { getUser, getUsers, getUsersByLocation }
+async function getUserRepos (userName) {
+  const user = await userRepo.getUser(userName)
+  if (!user) {
+    return 'User does not exist on our database '
+  }
+  return userRepo.getUserRepos(userName)
+}
+
+async function getUsersByProgrammingLang (langauge) {
+  return userRepo.getUsersByProgrammingLang(langauge)
+}
+
+module.exports = { getUser, getUsers, getUsersByLocation, getUserRepos, getUsersByProgrammingLang }

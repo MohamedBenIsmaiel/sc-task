@@ -4,7 +4,12 @@ const clc = require('cli-color')
 const error = clc.red.bold
 const warn = clc.yellow
 
-const { getUser, getUsersByLocation, getUsers } = require('../services/user.service')
+const {
+  getUser,
+  getUsersByLocation,
+  getUsers, getUserRepos,
+  getUsersByProgrammingLang
+} = require('../services/user.service')
 const { getRepo, getRepos, getReposByLanguage } = require('../services/repos.service')
 
 function getArgsOption () {
@@ -17,6 +22,8 @@ function getArgsOption () {
     rlang: { type: 'string', alias: 'repos-language', description: 'list all repos based on programming language ' },
     uloc: { type: 'string', alias: 'user-location', description: 'list all users based on their location ' },
     repos: { type: 'null', description: 'list all repos' },
+    ur: { type: 'string', alias: 'user-repos', description: 'list repos for specific user' },
+    ul: { type: 'string', alias: 'user-langauge', description: 'list users based on programming language' },
     h: { type: 'string', alias: 'help', description: 'show help screen' }
   }).argv
 }
@@ -40,6 +47,10 @@ function runCMD (argv) {
     getReposByLanguage(argv.rlang).then(repos => repos.map(repo => console.log(repo.dataValues))).catch(e => console.error(error(e.message)))
   } else if (argv.uloc) {
     getUsersByLocation(argv.uloc).then(users => users.map(user => console.log(user.dataValues))).catch(e => console.error(error(e.meesage)))
+  } else if (argv.ur) {
+    getUserRepos(argv.ur).then(repos => repos[0]?.dataValues?.Repos.map(repo => console.log(repo.dataValues))).catch(e => console.error(error(e.message)))
+  } else if (argv.ul) {
+    getUsersByProgrammingLang(argv.ul).then(users => users.map(user => console.log(user.dataValues))).catch(e => console.error(error(e.message)))
   } else if (argv.h) {
     console.log(
     `
@@ -63,6 +74,12 @@ function runCMD (argv) {
 
         --uloc  --user-location     list all users based on their location
         Ex: --uloc egypt
+
+        --ur   --user-repos         list all repos for specific user
+        Ex: --ur username
+
+        --ul   --user-language      list all users based on programming language
+        Ex: --ul javscript
    `)
   } else {
     console.log(`
