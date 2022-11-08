@@ -15,7 +15,7 @@ for Sql injection Sequelize escapes replacements, which avoids the problem at th
 if you are use linux distros like fedora or debian , give `setup.sh` a permission and run it then open the terminal and write the program name `second-profit`
 
 ### step 2:
- if you are not familiar with linux distros and you are using windows , you can follow that
+ if you are using windows or any OS else , you can follow that
 
 ```bash
  git clone https://github.com/MohamedBenIsmaiel/sp-task.git
@@ -32,6 +32,11 @@ install dependencies
 ```bash
  npm i --save
 ```
+run migration
+```bash
+ npm run migrate
+```
+
 then you can lanuch the app 
 ```bash
  ./index.js --help
